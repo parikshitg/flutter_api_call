@@ -7,4 +7,6 @@ type LoginRequest struct {
 
 type LoginResponse struct {
 	Status Status `json:"status"`
+	Name   string `json:"name"`
+	Email  string `json:"email"`
 }

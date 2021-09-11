@@ -1,9 +1,9 @@
 package api
 
-type RegisterRequest struct {
-	Name            string `json:"name"`
+type UpdateUserPasswordRequest struct {
 	Email           string `json:"email"`
-	Password        string `json:"password"`
+	OldPassword     string `json:"old_password"`
+	NewPassword     string `json:"new_password"`
 	ConfirmPassword string `json:"confirm_password"`
 }
 
