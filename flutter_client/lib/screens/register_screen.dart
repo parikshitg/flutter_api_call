@@ -3,24 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import './login_screen.dart';
+import '../classes/common.dart';
+import '../config/config.dart';
 
-class Status{
-  final bool success;
-  final String errorMessage;
-
-  Status({this.success, this.errorMessage});
-
-  factory Status.fromJson(Map<String, dynamic> json) {
-    return Status(
-      success: json['success'],
-      errorMessage: json['error_message']
-    );
-  }
-}
-
-Future<Status> registerCall(String name, String email, String password, String confirmPassword) async{
+Future<Response> registerCall(String name, email, password, confirmPassword) async{
   final response = await http.post(
-    Uri.parse('http://127.0.0.1:8080/register'),
+    Uri.parse('$BASE_URL/register'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Access-Control-Allow-Origin':"*",
@@ -37,7 +25,7 @@ Future<Status> registerCall(String name, String email, String password, String c
     print('Failed to create user. \n StatusCode: ${response.statusCode}');  
   }
   
-  return Status.fromJson(jsonDecode(response.body)['status']);
+  return Response.fromJson(jsonDecode(response.body));
 }
 
 class RegisterScreen extends StatefulWidget {
@@ -79,10 +67,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ElevatedButton(
             onPressed: () {
               setState(() {
-                registerCall(_nameController.text, _emailController.text, _passwordController.text, _confirmPasswordController.text).then((Status _status){
-                  if (_status.success == false){
-                    print('errorMessage: ${_status.errorMessage}');
-                    return Text(_status.errorMessage);
+                registerCall(_nameController.text, _emailController.text, _passwordController.text, _confirmPasswordController.text).then((Response _response){
+                  if (_response.status.success == false){
+                    print('errorMessage: ${_response.status.errorMessage}');
+                    return Text(_response.status.errorMessage);
                   }
                   Navigator.push(
                     context,
