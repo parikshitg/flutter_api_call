@@ -9,7 +9,7 @@ import '../config/config.dart';
 Future<Response> registerCall(String name, email, password, confirmPassword) async{
   final response = await http.post(
     Uri.parse('$BASE_URL/register'),
-    headers: HEADERS,
+    headers: headers,
     body: jsonEncode(<String, String>{
       'name': name,
       'email':email,

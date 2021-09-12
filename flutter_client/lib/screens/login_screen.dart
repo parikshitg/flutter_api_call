@@ -10,7 +10,7 @@ import '../config/config.dart';
 Future<LoginResponse> loginCall(String email, password) async{
   final response = await http.post(
     Uri.parse('$BASE_URL/login'),
-    headers: HEADERS,
+    headers: headers,
     body: jsonEncode(<String, String>{
       'email':email,
       'password':password,

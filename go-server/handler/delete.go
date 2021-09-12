@@ -25,6 +25,12 @@ func Delete(c *gin.Context) {
 		return
 	}
 
+	if req.Password != u.Password {
+		res.Status.ErrorMessage = "invalid password!!"
+		c.JSON(http.StatusNotFound, res)
+		return
+	}
+
 	delete(db, u.Email)
 	res.Status.Success = true
 	c.JSON(http.StatusOK, res)
