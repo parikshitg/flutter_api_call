@@ -31,12 +31,12 @@ Some common structures:
 
 ```
 Status{
-	Success      `json:"success"`			// boolean
+	Success      `json:"success"`		// boolean
 	ErrorMessage `json:"error_message"` 	// string
 }
 
 Response{
-	Status `json:"status"` 				    // Status
+	Status `json:"status"` 			// Status
 }
 
 User{
@@ -52,10 +52,10 @@ User{
 ```
 * Method: POST
 * Request: RegisterRequest{
-				Email 			`json:"email"` 			  // string
-				Name			`json:"name"`  			  // string
-				Password		`json:"password"` 		  // string
-				ConfirmPassword `json:"confirm_password"` // string
+				Email 			`json:"email"` 		// string
+				Name			`json:"name"`  		// string
+				Password		`json:"password"` 	// string
+				ConfirmPassword `json:"confirm_password"` 	// string
 			}
 * Response: Response{}
 ```
@@ -65,7 +65,7 @@ User{
 ```
 * Method: POST
 * Request: LoginRequest{
-				Email		`json:"email"`     // string
+				Email	    `json:"email"`     // string
 				Password    `json:"password"`  // string
 			}
 * Response: LoginResponse{
@@ -89,7 +89,7 @@ User{
 ```
 * Method: PATCH
 * Request: UpdateRequest{
-				Email 			`json:"email"` 				// string
+				Email 			`json:"email"` 		// string
 				OldPassword 	`json:"old_password"` 		// string
 				NewPassword     `json:"new_password"` 		// string
 				ConfrimPassword `json:"confirm_password"` 	// string
@@ -103,7 +103,7 @@ User{
 * Method: DELETE
 * Request: DeleteRequest{
 				Email 		`json:"email"` 	 // string
-				Password    `json:"password` // string
+				Password    `json:"password` 	 // string
 			}
 * Response: Response{}
 ```
