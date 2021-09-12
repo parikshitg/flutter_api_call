@@ -52,11 +52,11 @@ User{
 ```
 * Method: POST
 * Request: RegisterRequest{
-				Email 			`json:"email"` 		// string
-				Name			`json:"name"`  		// string
-				Password		`json:"password"` 	// string
-				ConfirmPassword `json:"confirm_password"` 	// string
-			}
+		Email 		 `json:"email"` 		// string
+		Name		 `json:"name"`  		// string
+		Password	 `json:"password"` 	        // string
+		ConfirmPassword `json:"confirm_password"` 	// string
+	    }
 * Response: Response{}
 ```
 
@@ -65,13 +65,13 @@ User{
 ```
 * Method: POST
 * Request: LoginRequest{
-				Email	    `json:"email"`     // string
-				Password    `json:"password"`  // string
-			}
+		Email	    `json:"email"`     // string
+		Password    `json:"password"`  // string
+		}
 * Response: LoginResponse{
-				Name  `json:"name"` 	 	   // string
-				Email `json:"email"` 	 	   // string
-			}
+		Name  `json:"name"` 	 	// string
+		Email `json:"email"` 	 	// string
+		}
 ```
 
 #### __/list__ (lists all the users)
@@ -79,9 +79,9 @@ User{
 ```
 * Method: GET
 * Response: ListResponse{
-				Status  `json:"status"` 	// Status
-				Users   `json:"users"` 		// []User
-			}
+		Status  `json:"status"` 	// Status
+		Users   `json:"users"` 	// []User
+	    }
 ```
 
 #### __/update-password__
@@ -89,11 +89,11 @@ User{
 ```
 * Method: PATCH
 * Request: UpdateRequest{
-				Email 			`json:"email"` 		// string
-				OldPassword 	`json:"old_password"` 		// string
-				NewPassword     `json:"new_password"` 		// string
-				ConfrimPassword `json:"confirm_password"` 	// string
-			}
+		Email 		 `json:"email"` 		// string
+		OldPassword 	 `json:"old_password"`         // string
+		NewPassword     `json:"new_password"` 	// string
+		ConfrimPassword `json:"confirm_password"` 	// string
+		}
 * Response: Response{}
 ```
 
@@ -102,8 +102,8 @@ User{
 ```
 * Method: DELETE
 * Request: DeleteRequest{
-				Email 		`json:"email"` 	 // string
-				Password    `json:"password` 	 // string
-			}
+		Email 	    `json:"email"` 	 // string
+		Password    `json:"password` 	 // string
+	}
 * Response: Response{}
 ```
