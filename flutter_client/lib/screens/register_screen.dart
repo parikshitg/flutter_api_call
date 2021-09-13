@@ -120,7 +120,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal:20.0, vertical:10.0),
+                        padding: const EdgeInsets.symmetric(horizontal:25.0, vertical:10.0),
                         child: const Text('REGISTER',style: TextStyle(color: Colors.white, fontSize: 18.0)),
                       ),
                     ),

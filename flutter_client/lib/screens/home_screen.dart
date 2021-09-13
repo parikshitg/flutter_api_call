@@ -39,10 +39,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          title: Text('HOMESCREEN')
+          title: Text('USERS LIST'),
+          automaticallyImplyLeading: false,
+           actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UpdateScreen(),
+                  ),
+                );
+              },
+              icon: Icon(Icons.settings),
+              iconSize: 24.0,
+            ),
+          ],
         ),
       body: SingleChildScrollView(
         child: Column(
@@ -61,7 +75,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: listResponse.users.length,
                         shrinkWrap: true,
                         itemBuilder: (context, i){
-                          return Text(listResponse.users[i].name);
+                          return Card(
+                            elevation: 2.0,
+                            child: ListTile(
+                              title:Text(listResponse.users[i].name, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),),
+                              trailing: Text(listResponse.users[i].email),
+                            ),
+                          );
                         },
                       )
                     )
@@ -69,32 +89,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UpdateScreen(),
-                  ),
-                );
-              },
-              child: const Text('Update Password'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DeleteScreen(),
-                  ),
-                );
-              },
-              child: const Text('Delete User'),
-            ),
           ],
         ),
       ),
-      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DeleteScreen(),
+            ),
+          );
+        },
+        tooltip: 'Delete',
+        child: Icon(Icons.delete),
+      ), 
     );
   }
 }

@@ -37,10 +37,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          title: Text('UPDATE'),
+          title: Text('UPDATE PASSWORD'),
         ),
       body: Column(
         children: [
@@ -76,7 +75,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
           ),
         ],
       ),
-     ),
     );
   }
 }
