@@ -1,5 +1,8 @@
 # FLUTTER API CALL
 
+![Register Screen](https://github.com/parikshitg/flutter_api_call/blob/master/flutter_client/assets/images/ss1.png)
+![List Screen](https://github.com/parikshitg/flutter_api_call/blob/master/flutter_client/assets/images/ss2.png)
+
 This projects demonstrates the ideal way to make api calls in flutter. The app consists of a basic auth flow. User can register, login, update its credentials and remove from the app covering the basic http methods GET, POST, PATCH, DELETE.
 
 The project-repo consist of two directories, **flutter_client** (our frontend client app written in flutter) and **go-server** backend server written in golang. The go-server is a small API based microservice written using gin-gonic.
