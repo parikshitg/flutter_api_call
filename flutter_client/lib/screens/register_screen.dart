@@ -31,58 +31,123 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String _email, _password, _name, _confirmPassword;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('REGISTER'),
-        ),
-      body: Column(
-        children: [
-          TextField(
-            controller: _nameController,
-            decoration: const InputDecoration(hintText: 'Enter Name'),
-          ),
-          TextField(
-            controller: _emailController,
-            decoration: const InputDecoration(hintText: 'Enter Email'),
-          ),
-          TextField(
-            controller: _passwordController,
-            decoration: const InputDecoration(hintText: 'Enter Password'),
-          ),
-          TextField(
-            controller: _confirmPasswordController,
-            decoration: const InputDecoration(hintText: 'Confirm Password'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                registerCall(_nameController.text, _emailController.text, _passwordController.text, _confirmPasswordController.text).then((Response _response){
-                  if (_response.status.success == false){
-                    print('errorMessage: ${_response.status.errorMessage}');
-                    return Text(_response.status.errorMessage);
-                  }
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('AUTH', style: TextStyle(fontSize: 50.0, fontFamily: 'Ethnocentric',),),
+              Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 10.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(labelText: 'Name'),
+                        validator: (input) => input.trim().isEmpty
+                            ? 'Please enter a valid Name'
+                            : null,
+                        onSaved: (input) => _name = input,
+                      ),
                     ),
-                  );
-                });
-              });
-            },
-            child: const Text('Register'),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 10.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(labelText: 'Email'),
+                        validator: (input) => !input.contains('@')
+                            ? 'Please enter a valid Email'
+                            : null,
+                        onSaved: (input) => _email = input,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 10.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(labelText: 'Password'),
+                        validator: (input) => input.length < 6
+                            ? 'Password must be atleast 6 characters'
+                            : null,
+                        onSaved: (input) => _password = input,
+                        obscureText: true,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 10.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(labelText: 'Confirm Password'),
+                        validator: (input) => input.length < 6
+                            ? 'Password must be atleast 6 characters'
+                            : null,
+                        onSaved: (input) => _confirmPassword = input,
+                        obscureText: true,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: (){
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+
+                          setState(() {
+                            registerCall(_name, _email, _password, _confirmPassword).then((Response _response){
+                              if (_response.status.success == false){
+                                print('errorMessage: ${_response.status.errorMessage}');
+                                return Text(_response.status.errorMessage);
+                              }
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            });
+                          });
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal:20.0, vertical:10.0),
+                        child: const Text('REGISTER',style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal:20.0, vertical:10.0),
+                        child: const Text('Go to Login',style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
-     ),
     );
   }
 }
