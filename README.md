@@ -1,7 +1,6 @@
 # FLUTTER API CALL
 
-![Register Screen](https://github.com/parikshitg/flutter_api_call/blob/master/flutter_client/assets/images/ss1.png)
-![List Screen](https://github.com/parikshitg/flutter_api_call/blob/master/flutter_client/assets/images/ss2.png)
+![Register Screen](https://github.com/parikshitg/flutter_api_call/blob/master/flutter_client/assets/images/flutter_api_call.png)
 
 This projects demonstrates the ideal way to make api calls in flutter. The app consists of a basic auth flow. User can register, login, update its credentials and remove from the app covering the basic http methods GET, POST, PATCH, DELETE.
 
